@@ -6,23 +6,23 @@ Ultimate outputs:
 
 1. High‑level repeat landscape across species:
 
-![highlevel panel A](figures/highlevel_panelA.png)
+![highlevel panel A](/figures/highlevel_panelA.png)
 
 2. Excluding B. kinseyi:
 
-![highlevel panel B](figures/highlevel_panelB.png)
+![highlevel panel B](/figures/highlevel_panelB.png)
 
 3. Genome size ~ repeat variation:
 
-![divergence panel AB](figures/divergence_panelAB.png)
+![divergence panel AB](/figures/divergence_panelAB.png)
 
 4. Divergence among TE DNA and LTR subclasses:
 
-![divergence panel C](figures/divergence_panelC.png)
+![divergence panel C](/figures/divergence_panelC.png)
 
-4. Model results: divergence across species LMM:
+5. Model results: divergence across species LMM:
 
-![divergence panel D](figures/divergence_panelD.png)
+![divergence panel D](/figures/divergence_panelD.png)
 
 
 

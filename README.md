@@ -17,9 +17,11 @@ The phylogeny for ordering species is based on the species tree from orthofinder
 
 ![phylogeny](figures/20260102_phylogeny.png)
 
-## Repeat-level variation
+***Click each header to see outputs and code blocks.***
 
-[Repeat analyses first run earlgrey v6.3.5 and then extract repeat information from the `.gff` files.](code/repeats.md)
+## [Repeat-level variation](code/repeats.md)
+
+Repeat analyses first run earlgrey v6.3.5 and then extract repeat information from the `.gff` files.
 
 * Plot high‑level repeat landscape across species (Proportion, Coverage, Family_Count), including full dataset and a version excluding B. kinseyi.
 
