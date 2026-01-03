@@ -35,9 +35,9 @@ Repeat analyses first run earlgrey v6.3.5 and then extract repeat information fr
 
 * Fit mixed‑effects model for log‑transformed kimura divergence (Species fixed, TE class random), compute EMMs, and test whether Q. erythrinae differs from others.
 
-## BUSCO-level whole genome alignments
+## [BUSCO-level whole genome alignments](code/busco_synteny.md)
 
-Synteny among genomes will first be assessed at the BUSCO-level, showing regions of conserved sequence.
+Synteny among genomes are first assessed at the BUSCO-level, showing regions of conserved sequence.
 
 * Run BUSCO v5 and telociraptor on all genomes to prep for [chromsyn](https://github.com/slimsuite/chromsyn/tree/main).
 
