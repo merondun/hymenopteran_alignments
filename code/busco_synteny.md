@@ -4,18 +4,19 @@ Using [chromsyn](https://github.com/slimsuite/chromsyn/blob/main/Walkthrough.md)
 
 Ultimate outputs:
 
-1. BUSCO-level synteny, showing BUSCO blocks >100kb:
+## 1. BUSCO-level synteny, showing BUSCO blocks >100kb:
 
 ![busco panel A](/figures/busco_panelA.png)
 
-2. Number of BUSCO genes for analysis from each genome:
+## 2. Number of BUSCO genes for analysis from each genome:
 
 ![busco panel B](/figures/busco_panelB.png)
 
-3. Number of syntenic blocks >100kb and containing >2 BUSCO genes are in each comparison
+## 3. Number of syntenic blocks >100kb and containing >2 BUSCO genes are in each comparison
 
 ![busco panel C](/figures/busco_panelC.png)
 
+___
 
 ```bash
 #!/bin/bash

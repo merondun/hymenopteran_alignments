@@ -4,26 +4,27 @@ Repeats are characterized with [earlgrey v6.3.5](https://github.com/TobyBaril/Ea
 
 Ultimate outputs: 
 
-1. High‑level repeat landscape across species:
+## 1. High‑level repeat landscape across species:
 
 ![highlevel panel A](/figures/highlevel_panelA.png)
 
-2. Excluding B. kinseyi:
+## 2. Excluding B. kinseyi:
 
 ![highlevel panel B](/figures/highlevel_panelB.png)
 
-3. Genome size ~ repeat variation:
+## 3. Genome size ~ repeat variation:
 
 ![divergence panel AB](/figures/divergence_panelAB.png)
 
-4. Divergence among TE DNA and LTR subclasses:
+## 4. Divergence among TE DNA and LTR subclasses:
 
 ![divergence panel C](/figures/divergence_panelC.png)
 
-5. Model results: divergence across species LMM:
+## 5. Model results: divergence across species LMM:
 
 ![divergence panel D](/figures/divergence_panelD.png)
 
+___
 
 
 Configuration:
