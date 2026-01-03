@@ -2,7 +2,7 @@
 
 Repeats are characterized with [earlgrey v6.3.5](https://github.com/TobyBaril/EarlGrey/), using the hymenopteran dfam database. 
 
-Ultimate outputs: 
+**Ultimate outputs:**
 
 ## 1. High‑level repeat landscape across species:
 

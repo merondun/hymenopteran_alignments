@@ -1,10 +1,18 @@
 # Gene-based Alignments
 
-Instead of examining BUSCO-level variation, this will examine whole-genic variation between genomes.
+Instead of examining BUSCO-level variation, this will examine whole-genic variation between genomes. Examine syntenic gene blocks where there are at least 10 genes in each block after filtering for reciprocal best hits. 
 
-The ultimate outputs will be:
+**The ultimate outputs will be:**
 
-1. 
+## 1. Synteny blocks among genomes using all genes: reciprocal best hits
+
+![genic panel A](/figures/genic_panelA.png)
+
+## 2. Dot plots of those reciprocal best hits:
+
+![genic panel B and C](/figures/genic_panelBC.png)
+
+___
 
 ## Prep
 

@@ -2,7 +2,7 @@
 
 Using [chromsyn](https://github.com/slimsuite/chromsyn/blob/main/Walkthrough.md), which investigates synteny using BUSCO-level variation between species. First we just need to run busco on all the genomes.
 
-Ultimate outputs:
+**Ultimate outputs:**
 
 ## 1. BUSCO-level synteny, showing BUSCO blocks >100kb:
 

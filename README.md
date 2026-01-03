@@ -45,7 +45,7 @@ Synteny among genomes are first assessed at the BUSCO-level, showing regions of 
 
 * Summarize the outputs.
 
-## Reciprocal-best-hit genic alignments
+## [Reciprocal-best-hit genic alignments](code/genic_synteny.md)
 
 Instead of focusing on BUSCOs, also examine whole-genic synteny using genome annotation `.gffs`.
 
@@ -54,3 +54,7 @@ Instead of focusing on BUSCOs, also examine whole-genic synteny using genome ann
 * Perform last alignments and extract reciprocal best hits using [jcvi](https://github.com/tanghaibao/jcvi/wiki/MCscan-(Python-version)#pairwise-synteny-visualization).
 
 * Plot with jcvi. 
+
+## Qs & Cs 
+
+Questions or comments reach out to Justin Merondun heritabilities [@] gmail.com or make an issue here. 
