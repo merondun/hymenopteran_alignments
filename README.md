@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1126951071.svg)](https://doi.org/10.5281/zenodo.18157483)
+
 # Chromosome-scale alignments & repeatome variation
 
 Whole genome alignments and repeatome analyses on hymenopteran chromosome-level genomes, with a focus on Quadrastichus erythrinae.

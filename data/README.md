@@ -25,3 +25,6 @@ This directory contains all inputs required for repeat analysis, phylogenetic co
 - **jcvi_alignments.zip**  
   JCVI formatted CDS files and reciprocal‑best‑hit (RBH) gene anchors used for whole‑genome synteny plotting.
 
+- **Quadrastichus_erythrinae.filteredRepeats.gff.gz**  
+  earlGrey repeat gff annotation for Q. erthrinae. 
+
