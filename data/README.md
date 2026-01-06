@@ -16,13 +16,13 @@ This directory contains all inputs required for repeat analysis, phylogenetic co
 - **Samples.list**  
   Species list in phylogenetic order.
 
-- **chromsyn_n8_format.chromsyn.xlsx**  
+- **chromsyn_n8_format_db12.chromsyn.xlsx**  
   Chromsyn output containing BUSCO‑level synteny anchors for all genomes.
 
-- **chromsyn_plotting.zip**  
+- **chromsyn_plotting_inputs.zip**  
   Necessary inputs for chromsyn plotting.
 
-- **jcvi_alignments.zip**  
+- **jcvi_plotting_inputs.zip**  
   JCVI formatted CDS files and reciprocal‑best‑hit (RBH) gene anchors used for whole‑genome synteny plotting.
 
 - **Quadrastichus_erythrinae.filteredRepeats.gff.gz**  

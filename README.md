@@ -25,13 +25,13 @@ The phylogeny for ordering species is based on the species tree from orthofinder
 
 Repeat analyses first run earlgrey v6.3.5 and then extract repeat information from the `.gff` files.
 
-* Plot high‑level repeat landscape across species (Proportion, Coverage, Family_Count), including full dataset and a version excluding B. kinseyi.
+* Plot high‑level repeat landscape across species (Proportion, Coverage, Family_Count), including version excluding B. kinseyi.
 
 * Compute total repeat coverage per genome (excluding Non‑Repeat) and run Spearman correlations between repeat bp and genome size.
 
-* Fit PGLS models (λ estimated by ML) for log(GSize) ~ log(Repeats), both with full tree and with B. kinseyi removed; extract fitted values and λ profiles.
+* Fit PGLS models (λ estimated by ML) for log(GSize) ~ log(Repeats), both on full tree and with B. kinseyi removed; extract fitted values and λ profiles.
 
-* Plot genome size vs repeat content with LM trendline, species‑specific colors, and annotated correlation statistics.
+* Plot genome size vs repeat content with LM trendline, species‑specific colors, and annotate correlation statistics.
 
 * Generate divergence distributions (Kimura) for LTR and DNA elements using ridge densities + boxplots across species.
 
@@ -41,7 +41,7 @@ Repeat analyses first run earlgrey v6.3.5 and then extract repeat information fr
 
 Synteny among genomes are first assessed at the BUSCO-level, showing regions of conserved sequence.
 
-* Run BUSCO v5 and telociraptor on all genomes to prep for [chromsyn](https://github.com/slimsuite/chromsyn/tree/main).
+* Run BUSCO v5 with hymenoptera_db12 and telociraptor on all genomes to prep for [chromsyn](https://github.com/slimsuite/chromsyn/tree/main).
 
 * Plot synteny (requiring minimum 100kb BUSCO-blocks) among genomes using chromsyn. 
 
