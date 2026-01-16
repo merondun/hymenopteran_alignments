@@ -14,11 +14,11 @@ Repeats are characterized with [earlgrey v6.3.5](https://github.com/TobyBaril/Ea
 
 ## 3. Genome size ~ repeat variation:
 
-![repeats panel AB](/figures/repeats_panelC.png)
+![repeats panel C](/figures/repeats_panelC.png)
 
 ## 4. Genome size ~ repeat variation excluding B. kinseyi:
 
-![repeats panel C](/figures/repeast_panelD.png)
+![repeats panel D](/figures/repeats_panelD.png)
 
 ___
 
