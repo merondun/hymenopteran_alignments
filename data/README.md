@@ -19,9 +19,6 @@ This directory contains all inputs required for repeat analysis, phylogenetic co
 - **chromsyn_n8_format_db12.chromsyn.xlsx**  
   Chromsyn output containing BUSCO‑level synteny anchors for all genomes.
 
-- **chromsyn_plotting_inputs.zip**  
-  Necessary inputs for chromsyn plotting.
-
 - **jcvi_plotting_inputs.zip**  
   JCVI formatted CDS files and reciprocal‑best‑hit (RBH) gene anchors used for whole‑genome synteny plotting.
 

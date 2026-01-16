@@ -27,25 +27,19 @@ Repeat analyses first run earlgrey v6.3.5 and then extract repeat information fr
 
 * Plot high‑level repeat landscape across species (Proportion, Coverage, Family_Count), including version excluding B. kinseyi.
 
-* Compute total repeat coverage per genome (excluding Non‑Repeat) and run Spearman correlations between repeat bp and genome size.
+* Compute total repeat coverage per genome and run Spearman correlations between repeat bp and genome size.
 
-* Fit PGLS models (λ estimated by ML) for log(GSize) ~ log(Repeats), both on full tree and with B. kinseyi removed; extract fitted values and λ profiles.
+* Fit PGLS models (λ estimated by ML) for log(GSize) ~ log(Repeats), both on full tree and with B. kinseyi removed; extract fitted values and λ.
 
-* Plot genome size vs repeat content with LM trendline, species‑specific colors, and annotate correlation statistics.
-
-* Generate divergence distributions (Kimura) for LTR and DNA elements using ridge densities + boxplots across species.
-
-* Fit mixed‑effects model for log‑transformed kimura divergence (Species fixed, TE class random), compute EMMs, and test whether Q. erythrinae differs from others.
+* Plot genome size vs repeat content with trendline.
 
 ## [BUSCO-level whole genome alignments](code/busco_synteny.md)
 
-Synteny among genomes are first assessed at the BUSCO-level, showing regions of conserved sequence.
+First compare synteny at the BUSCO-level, identifying pairwise counts of BUSCO blocks between species. 
 
 * Run BUSCO v5 with hymenoptera_db12 and telociraptor on all genomes to prep for [chromsyn](https://github.com/slimsuite/chromsyn/tree/main).
 
-* Plot synteny (requiring minimum 100kb BUSCO-blocks) among genomes using chromsyn. 
-
-* Summarize the outputs.
+* Plot the number of conserved pairwise synteny blocks (requiring minimum 100kb BUSCO-blocks) among genomes using chromsyn. 
 
 ## [Reciprocal-best-hit genic alignments](code/genic_synteny.md)
 

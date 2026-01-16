@@ -296,16 +296,9 @@ write.csv(simp,file='Repeats_Coordinates_Divergence_20251229.csv',quote=F,row.na
 This script will summarize and plot the files above:
 
 * Plot high‑level repeat landscape across species (Proportion, Coverage, Family_Count), including full dataset and a version excluding B. kinseyi.
-
 * Compute total repeat coverage per genome (excluding Non‑Repeat) and run Spearman correlations between repeat bp and genome size.
-
 * Fit PGLS models (λ estimated by ML) for log(GSize) ~ log(Repeats), both with full tree and with B. kinseyi removed; extract fitted values and λ profiles.
-
 * Plot genome size vs repeat content with LM trendline, species‑specific colors, and annotated correlation statistics.
-
-* Generate divergence distributions (Kimura) for LTR and DNA elements using ridge densities + boxplots across species.
-
-* Fit mixed‑effects model for log‑transformed divergence (Species fixed, TE class random), compute EMMs, and test whether Q. erythrinae differs from others.
 
 ```R
 setwd('/90daydata/coffea_pangenome/fly_alignments/chr_assemblies/repeats/results')
@@ -316,6 +309,8 @@ library(meRo) #devtools::install_github('merondun/meRo')
 library(vegan)
 library(broom)
 library(scales)
+library(ggokabeito)
+library(colorblindcheck)
 
 ##### High Level #####
 high_level <- read_csv('Summary_GFF_20251229.csv') %>% mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) )
@@ -323,25 +318,30 @@ high_level <- read_csv('Summary_GFF_20251229.csv') %>% mutate( Species = gsub("^
 ord <- read_tsv('../../Samples.list',col_names = F) %>% dplyr::rename(Species=X1) %>%  mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) )
 high_level$Species <- factor(high_level$Species,levels=rev(ord$Species))
 high_level$Classification <- factor(high_level$Classification,levels=c('Non-Repeat','Unclassified','Other (Simple Repeat Microsatellite RNA)','DNA','Penelope','Rolling Circle','LTR','LINE'))
-cols <- high_level %>% dplyr::select(Classification) %>% distinct %>% mutate(Color = brewer.pal(8,'Paired'))
+cols <- high_level %>% dplyr::select(Classification) %>% distinct %>% arrange(desc(Classification)) %>% mutate(Color = c(palette_okabe_ito()[1:7],'#D3D3D3'))
+cols <- high_level %>% dplyr::select(Classification) %>% distinct %>% arrange(desc(Classification)) %>% mutate(Color = c(viridis(7),'#D3D3D3'))
+palette_check(cols$Color, plot = TRUE)
 
 # Plot landscape 
 all <- high_level %>% 
   mutate(Coverage = Coverage / 1e6) %>% 
   pivot_longer(c(Proportion,Coverage,Family_Count)) %>%
-  filter( !(name == 'Family_Counts' & (Classification == 'Unclassified' | Classification == "Other (Simple Repeat Microsatellite RNA)")) ) %>% 
+  filter( !(name == "Family_Count" & Classification %in% c( "Unclassified", "Other (Simple Repeat Microsatellite RNA)" ) )) %>% 
   ggplot(aes(y=Species,x=value,fill=Classification))+
   geom_bar(stat='identity',position=position_stack())+
   theme_bw(base_size=8)+
   facet_grid(.~name,scales='free',space='free_y')+
-  scale_fill_manual(values=cols$Color,breaks=cols$Classification)+
+  scale_fill_manual('',values=cols$Color,breaks=cols$Classification)+
   theme(strip.text.y = element_text(angle = 0))+
   ylab('')+xlab('Distinct Classifications')+
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 3))
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 2))+
+  theme(legend.position='top',
+        legend.text = element_text(size = 4), 
+        legend.key.size = unit(0.2, "lines"))
 all
 
-ggsave('../../figures/20251229_RepeatsHighLevelSummary.pdf',
-       all,dpi=300,height=4,width=8)
+ggsave('../../figures/20260116_RepeatsHighLevelSummary.pdf',
+       all,dpi=300,height=4,width=3)
 
 
 # Excluding B. kinseyi 
@@ -349,19 +349,23 @@ excl <- high_level %>%
   mutate(Coverage = Coverage / 1e6) %>% 
   filter(Species != 'B_kinseyi') %>% 
   pivot_longer(c(Proportion,Coverage,Family_Count)) %>%
-  filter( !(name == 'Family_Counts' & (Classification == 'Unclassified' | Classification == "Other (Simple Repeat Microsatellite RNA)")) ) %>% 
+  filter( !(name == "Family_Count" & Classification %in% c( "Unclassified", "Other (Simple Repeat Microsatellite RNA)" ) )) %>% 
   ggplot(aes(y=Species,x=value,fill=Classification))+
   geom_bar(stat='identity',position=position_stack())+
   theme_bw(base_size=8)+
   facet_grid(.~name,scales='free',space='free_y')+
-  scale_fill_manual(values=cols$Color,breaks=cols$Classification)+
+  scale_fill_manual('',values=cols$Color,breaks=cols$Classification)+
   theme(strip.text.y = element_text(angle = 0))+
   ylab('')+xlab('Distinct Classifications')+
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 3))
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 2))+
+  theme(legend.position='top',
+        legend.text = element_text(size = 4), 
+        legend.key.size = unit(0.2, "lines"))
+
 excl
 
-ggsave('../../figures/20251229_RepeatsHighLevelSummary_No_Belonocnema.pdf',
-       excl,dpi=300,height=4,width=8)
+ggsave('../../figures/20260116_RepeatsHighLevelSummary_No_Belonocnema.pdf',
+       excl,dpi=300,height=2.75,width=3)
 
 #### PGLS ####
 # Significance genome size ~ LTRs 
@@ -455,8 +459,8 @@ rp <- ggplot(cp, aes(x = GSize, y = Repeats, col=Species, group=NA,label=Species
   theme_bw(base_size=8)+
   theme(legend.position='none')
 rp
-ggsave('../../figures/20251229_RepeatsHighLevelSummary-Repeats-GenomeSize.pdf',
-       rp,dpi=300,height=4,width=4)
+ggsave('../../figures/20260116_RepeatsHighLevelSummary-Repeats-GenomeSize.pdf',
+       rp,dpi=300,height=3,width=2.75)
 
 #### PGLS wihtout B kinseyi ####
 # Significance genome size ~ LTRs 
@@ -474,7 +478,7 @@ cor_res
 # estimate statistic p.value method                          alternative
 # <dbl>     <dbl>   <dbl> <chr>                           <chr>      
 #   1    0.893      6.00  0.0123 Spearman's rank correlation rho two.sided  
-  
+
 # pgls
 pgls_in <- rep_df %>% dplyr::select(Species,Repeats,GSize) %>% mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) ) %>% as.data.frame
 nwk <- read.tree('../../cactus/cactus_rooted_tree_full.nwk')
@@ -530,7 +534,7 @@ spcols <- brewer.pal(8,'Set2')
 show_col(spcols)
 spcol <- spcols[c(3,5,8,6,2,7,4)]
 show_col(spcol)
-spdf <- data.frame(Species=ord$Species,col=spcol) %>% mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) ) 
+spdf <- data.frame(Species=ord[-3,],col=spcol) %>% mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) ) 
 library(ggrepel)
 rp <- ggplot(cp, aes(x = GSize, y = Repeats, col=Species, group=NA,label=Species)) +
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
@@ -543,75 +547,8 @@ rp <- ggplot(cp, aes(x = GSize, y = Repeats, col=Species, group=NA,label=Species
   theme_bw(base_size=8)+
   theme(legend.position='none')
 rp
-ggsave('../../figures/20251229_RepeatsHighLevelSummary-Repeats-GenomeSize-NoBkinseyi.pdf',
-       rp,dpi=300,height=2.75,width=3.5)
-
-
-###### Divergence Summaries ######
-library(ggridges)
-t <- read_csv('Repeats_Coordinates_Divergence_20251229.csv')
-t <- t %>% mutate( Species = gsub("^([A-Za-z])[A-Za-z]*_(.*)$", "\\1_\\2", Species) )
-t$Species <- factor(t$Species,levels=rev(ord$Species))
-
-hists <- t %>% 
-  filter(grepl('LTR|DNA',Classification)) %>% 
-  pivot_longer(Classification) %>% 
-  ggplot(aes(x = KimuraDiv, y = Species, fill = Species)) +
-  # half‑width density curves, nudged slightly up
-  geom_density_ridges(
-    aes(x = KimuraDiv, y = Species),
-    rel_min_height = 0.01,
-    scale = 0.4,
-    alpha = 0.6,
-    color = NA,
-    position = position_nudge(y = 0.1)
-  )+ 
-  # thin boxplots, nudged slightly down
-  geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.5,
-               position = position_nudge(y = -0.1))+
-  scale_fill_manual(values=spdf$col,breaks=spdf$Species)+
-  theme_bw(base_size = 8) +
-  coord_cartesian(xlim = c(0,0.9))+
-  facet_grid(.~value,scales='free')+
-  theme(legend.position = "none") +
-  ylab('')
-hists
-
-ggsave('../../figures/20251229_RepeatsDivergence.pdf',
-       hists,dpi=300,height=3,width=3.5)
-
-# is Q ery significantly lower than others?
-library(lme4) 
-library(emmeans)
-
-# log xform
-lmm_df <- t %>% 
-  filter(grepl('LTR|LINE|DNA',Classification)) %>% 
-  mutate(KD_log = log1p(KimuraDiv)) 
-
-# Mixed model: Species as fixed, TE family as random (if available) 
-m1 <- lmer(KD_log ~ Species + (1 | Classification), data = lmm_df)
-summary(m1)
-
-emm <- emmeans(m1, ~ Species)
-emm
-
-contrast(emm, method = "trt.vs.ctrl", ref = "Q_erythrinae", adjust = "BH")
-
-plot(emm)
-emm_df <- as.data.frame(emm) 
-
-emms <- ggplot(emm_df, aes(y = Species, x = emmean,col=Species)) + 
-  geom_point(size = 3) + 
-  geom_errorbar(aes(xmin = asymp.LCL, xmax = asymp.UCL), width = 0.2) + 
-  theme_bw(base_size=8) + 
-  scale_color_manual(values=spdf$col,breaks=spdf$Species)+
-  xlab("Estimated marginal mean Kimura divergence (log scale)")+
-  theme(legend.position='none') + 
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 3))
-emms
-ggsave('../../figures/20251229_RepeatsDivergence-EMMs.pdf',
-       emms,dpi=300,height=2,width=2)
+ggsave('../../figures/20260116_RepeatsHighLevelSummary-Repeats-GenomeSize-NoBkinseyi.pdf',
+       rp,dpi=300,height=3,width=2.75)
 ```
 
 
@@ -619,6 +556,8 @@ ggsave('../../figures/20251229_RepeatsDivergence-EMMs.pdf',
 # BUSCO Synteny
 
 Using [chromsyn](https://github.com/slimsuite/chromsyn/blob/main/Walkthrough.md), which investigates synteny using BUSCO-level variation between species. First we just need to run busco on all the genomes.
+
+
 
 ```bash
 #!/bin/bash
@@ -692,6 +631,8 @@ Rscript ~/symlinks/software/chromsyn/chromsyn.R \
     ygap=3 ypad=0.1 labelsize=0.75 opacity=0.8 \
     pdfheight=5 pdfwidth=6
 ```
+
+## Plot
 
 Plot alignments in R:
 

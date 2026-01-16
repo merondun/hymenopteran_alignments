@@ -4,21 +4,15 @@ Using [chromsyn](https://github.com/slimsuite/chromsyn/blob/main/Walkthrough.md)
 
 **Ultimate outputs:**
 
-## 1. BUSCO-level synteny, showing BUSCO blocks >100kb:
+## 1. Number of syntenic blocks >100kb and containing >2 BUSCO genes are in each comparison
 
-![busco panel A](/figures/busco_panelA.png)
-
-## 2. Number of BUSCO genes for analysis from each genome:
-
-![busco panel B](/figures/busco_panelB.png)
-
-## 3. Number of syntenic blocks >100kb and containing >2 BUSCO genes are in each comparison
-
-![busco panel C](/figures/busco_panelC.png)
+![synteny panel C](/figures/synteny_panelC.png)
 
 ___
 
 # Code
+
+First, ensure proper input files for chromsyn are made.
 
 ```bash
 #!/bin/bash
@@ -92,6 +86,8 @@ Rscript ~/symlinks/software/chromsyn/chromsyn.R \
     ygap=3 ypad=0.1 labelsize=0.75 opacity=0.8 \
     pdfheight=5 pdfwidth=6
 ```
+
+## Plot
 
 Plot alignments in R:
 
@@ -274,4 +270,3 @@ hm
 ggsave('figures/20260105_HeatmapChromsynBuscoHits100kb.pdf',hm,height=3,width=4.5)
 
 ```
-

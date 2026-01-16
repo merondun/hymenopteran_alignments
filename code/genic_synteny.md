@@ -6,11 +6,11 @@ Instead of examining BUSCO-level variation, this will examine whole-genic variat
 
 ## 1. Synteny blocks among genomes using all genes: reciprocal best hits
 
-![genic panel A](/figures/genic_panelA.png)
+![genic panel A](/figures/synteny_panelA.png)
 
 ## 2. Dot plots of those reciprocal best hits:
 
-![genic panel B and C](/figures/genic_panelBC.png)
+![genic panel B and C](/figures/synteny_panelB.png)
 
 ___
 
